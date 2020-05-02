@@ -1,0 +1,27 @@
+version: "2"
+
+services: 
+    pythonflask:
+        image: phaneendrakumardev/pythonmongotest
+        build: 
+            context: .
+            dockerfile: ./Dockerfile
+        ports: 
+            - "5001:5001"
+        links: 
+            - mongo
+        depends_on: 
+            - mongo
+        volumes:
+            - .:/todo
+
+        
+
+    mongo:
+        image: mongo:3.0.2
+        volumes: 
+            - ./data:/data/db
+        
+
+
+    
